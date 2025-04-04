@@ -97,4 +97,5 @@ def main():
     print("Processing complete. Data saved to text files.")
 
 if __name__ == "__main__":
+    print("Start")
     main()
