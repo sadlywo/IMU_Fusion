@@ -80,19 +80,16 @@ def main():
     visualizer.show_all()
     
     # Save data
-    base_name = "imu_data"
-    data_io.save_raw_data(
-        data_io.generate_filename(base_name, "raw"),
-        time_vals, accel, gyro, mag
-    )
-    data_io.save_orientation(
-        data_io.generate_filename(base_name, "orientation"),
-        time_vals, orientations
-    )
-    data_io.save_trajectory(
-        data_io.generate_filename(base_name, "trajectory"), 
-        time_vals, positions
-    )
+    processed_data = {
+        'time': time_vals,
+        'accel': accel,
+        'gyro': gyro,
+        'mag': mag,
+        'orientation': orientations,
+        'position': positions,
+        'velocity': np.zeros_like(positions)  # Dummy velocity data
+    }
+    data_io.save_results(processed_data, ".", "imu_data")
     
     print("Processing complete. Data saved to text files.")
 
